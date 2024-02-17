@@ -1,10 +1,10 @@
 import { Injectable, NotFoundException, HttpException, HttpStatus } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { User } from 'src/data/dto/user';
-import { UserEntity } from 'src/data/entities/user.entity';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
-import UserToUserEntityMapper from 'src/utils/mappers/UserToUserEntityMapper';
+import {User} from "../data/dto/user";
+import {UserEntity} from "../data/entities/user.entity";
+import UserToUserEntityMapper from "../utils/mappers/UserToUserEntityMapper";
 
 @Injectable()
 export class UsersService {
@@ -15,7 +15,7 @@ export class UsersService {
 
     async findOne(username: string): Promise<UserEntity | undefined> {
         const user: UserEntity = await this.userRepository.findOne(
-            { 
+            {
                 where: {
                     username: username
                 }
@@ -24,7 +24,7 @@ export class UsersService {
 
         return user;
     }
-    
+
     async fetchByUsername(username: string): Promise<string> {
         const result: UserEntity = await this.userRepository.findOne({
             select: {
@@ -33,7 +33,7 @@ export class UsersService {
                 lastname: false,
                 mailAddress: false,
                 password: false
-            }, 
+            },
             where: {
                 username: username
             }

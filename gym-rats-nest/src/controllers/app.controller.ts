@@ -1,10 +1,11 @@
 import { Controller, Get, UseGuards, Post, Req, Param, HttpException, HttpStatus } from '@nestjs/common';
 import { Request } from 'express';
-import { AuthService } from 'src/auth/auth.service';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { LocalAuthGuard } from 'src/auth/local-auth.guard';
-import { ExercisesService } from 'src/exercises/exercises.service';
-import { UsersService } from 'src/users/users.service';
+import {AuthService} from "../auth/auth.service";
+import {ExercisesService} from "../exercises/exercises.service";
+import {LocalAuthGuard} from "../auth/local-auth.guard";
+import {JwtAuthGuard} from "../auth/jwt-auth.guard";
+import {UsersService} from "../users/users.service";
+import {ExerciseEntity} from "../data/entities/exercise.entity";
 
 @Controller()
 export class AppController {
@@ -24,7 +25,7 @@ export class AppController {
 
   @UseGuards(JwtAuthGuard)
   @Get('all-exercises')
-  fetchAllExercises(): any { 
+  fetchAllExercises(): Promise<ExerciseEntity[]> {
     return this.exercisesService.fetchAll();
   }
 

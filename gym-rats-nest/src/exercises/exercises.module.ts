@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ExercisesService } from './exercises.service';
-import { ExerciseEntity } from 'src/data/entities/exercise.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import {ExerciseEntity} from "../data/entities/exercise.entity";
 
 @Module({
   imports: [TypeOrmModule.forFeature([ExerciseEntity])],

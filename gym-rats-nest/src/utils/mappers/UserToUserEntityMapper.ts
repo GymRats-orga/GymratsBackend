@@ -1,5 +1,5 @@
-import { User } from "src/data/dto/user";
-import { UserEntity } from "src/data/entities/user.entity";
+import {User} from "../../data/dto/user";
+import {UserEntity} from "../../data/entities/user.entity";
 
 class UserToUserEntityMapper {
     public static userToUserEntity(user: User): UserEntity {
